@@ -6,6 +6,7 @@ To get started with TDD, see the `README.md` file in your
 `ruby/grep` directory.
 =end
 
+require 'io/console'
 
 class Grep
     def initialize
@@ -14,19 +15,11 @@ class Grep
     def grep(pattern, flags, files)
         @flags = flags
         @pattern = pattern
-        if flags.size == 0 
-            files.each do |file| IO.readlines(file).each_with_index do |string|
-                @result.push(string.match("/#{pattern}/"))
-            
-    end
-    def (pattern, line, string)
-        @flags.includes?('-i')
-    end
-    def n_l_flags?(file, number, string)
-        @flags.includes?('-l') ? @result.push(file) : @flags.includes?('-n') ? @result.push("#{number}:#{string}") : @result
     end
 end
 
-pattern = ""
+pattern = "tima"
 files = ["test.txt"]
 flags = []
+
+p g = Grep.new().grep(pattern, flags, files)
