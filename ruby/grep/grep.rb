@@ -16,10 +16,19 @@ class Grep
         @flags = flags
         @pattern = pattern
     end
+    def no_flags(files)
+        files.each do |file| IO.readlines(file).each_with_index do |string|
+             if string.match(/#{@pattern}/)
+                @result.push(string)
+             end
+            end
+        end
+    end
 end
 
 pattern = "tima"
 files = ["test.txt"]
 flags = []
 
-p g = Grep.new().grep(pattern, flags, files)
+g = Grep.new()
+p g.no_flags(files)
