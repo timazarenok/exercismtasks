@@ -19,7 +19,7 @@ class Meetup
     end
     def day(weekd, pos)
         if(pos == :teenth)
-            @date = Date.new(@year, @month, 13).step(Date.new(@year, @month, 19)).select {|d| d.cwday == WEEKENDS[weekd]}.first
+            @date = Date.new(@year, @month, 13).step(Date.new(@year, @month, 19)).find {|d| d.cwday == WEEKENDS[weekd]}
         else
             @date = @date.step(Date.new(@year, @month, -1)).select {|d| d.cwday == WEEKENDS[weekd]}[POSITION[pos]]
         end
