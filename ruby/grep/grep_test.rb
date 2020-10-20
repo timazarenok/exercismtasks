@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'minitest/autorun'
 require_relative 'grep'
 
@@ -45,10 +47,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_one_match_no_flags
-    # 
-    pattern = "Agamemnon"
+    pattern = 'Agamemnon'
     flags = []
-    files = ["iliad.txt"]
+    files = ['iliad.txt']
     expected = <<~EXPECTED.rstrip
       Of Atreus, Agamemnon, King of men.
     EXPECTED
@@ -57,10 +58,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_one_match_print_line_numbers_flag
-    
-    pattern = "Forbidden"
-    flags = ["-n"]
-    files = ["paradise-lost.txt"]
+    pattern = 'Forbidden'
+    flags = ['-n']
+    files = ['paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       2:Of that Forbidden Tree, whose mortal tast
     EXPECTED
@@ -69,10 +69,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_one_match_case_insensitive_flag
-    
-    pattern = "FORBIDDEN"
-    flags = ["-i"]
-    files = ["paradise-lost.txt"]
+    pattern = 'FORBIDDEN'
+    flags = ['-i']
+    files = ['paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       Of that Forbidden Tree, whose mortal tast
     EXPECTED
@@ -81,10 +80,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_one_match_print_file_names_flag
-    
-    pattern = "Forbidden"
-    flags = ["-l"]
-    files = ["paradise-lost.txt"]
+    pattern = 'Forbidden'
+    flags = ['-l']
+    files = ['paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       paradise-lost.txt
     EXPECTED
@@ -93,10 +91,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_one_match_match_entire_lines_flag
-    
-    pattern = "With loss of Eden, till one greater Man"
-    flags = ["-x"]
-    files = ["paradise-lost.txt"]
+    pattern = 'With loss of Eden, till one greater Man'
+    flags = ['-x']
+    files = ['paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       With loss of Eden, till one greater Man
     EXPECTED
@@ -105,10 +102,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_one_match_multiple_flags
-    
-    pattern = "OF ATREUS, Agamemnon, KIng of MEN."
-    flags = ["-n", "-i", "-x"]
-    files = ["iliad.txt"]
+    pattern = 'OF ATREUS, Agamemnon, KIng of MEN.'
+    flags = ['-n', '-i', '-x']
+    files = ['iliad.txt']
     expected = <<~EXPECTED.rstrip
       9:Of Atreus, Agamemnon, King of men.
     EXPECTED
@@ -117,10 +113,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_several_matches_no_flags
-    
-    pattern = "may"
+    pattern = 'may'
     flags = []
-    files = ["midsummer-night.txt"]
+    files = ['midsummer-night.txt']
     expected = <<~EXPECTED.rstrip
       Nor how it may concern my modesty,
       But I beseech your grace that I may know
@@ -131,10 +126,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_several_matches_print_line_numbers_flag
-    
-    pattern = "may"
-    flags = ["-n"]
-    files = ["midsummer-night.txt"]
+    pattern = 'may'
+    flags = ['-n']
+    files = ['midsummer-night.txt']
     expected = <<~EXPECTED.rstrip
       3:Nor how it may concern my modesty,
       5:But I beseech your grace that I may know
@@ -145,10 +139,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_several_matches_match_entire_lines_flag
-    
-    pattern = "may"
-    flags = ["-x"]
-    files = ["midsummer-night.txt"]
+    pattern = 'may'
+    flags = ['-x']
+    files = ['midsummer-night.txt']
     expected = <<~EXPECTED.rstrip
 
     EXPECTED
@@ -157,10 +150,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_several_matches_case_insensitive_flag
-    
-    pattern = "ACHILLES"
-    flags = ["-i"]
-    files = ["iliad.txt"]
+    pattern = 'ACHILLES'
+    flags = ['-i']
+    files = ['iliad.txt']
     expected = <<~EXPECTED.rstrip
       Achilles sing, O Goddess! Peleus' son;
       The noble Chief Achilles from the son
@@ -170,10 +162,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_several_matches_inverted_flag
-    
-    pattern = "Of"
-    flags = ["-v"]
-    files = ["paradise-lost.txt"]
+    pattern = 'Of'
+    flags = ['-v']
+    files = ['paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       Brought Death into the World, and all our woe,
       With loss of Eden, till one greater Man
@@ -186,10 +177,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_no_matches_various_flags
-    
-    pattern = "Gandalf"
-    flags = ["-n", "-l", "-x", "-i"]
-    files = ["iliad.txt"]
+    pattern = 'Gandalf'
+    flags = ['-n', '-l', '-x', '-i']
+    files = ['iliad.txt']
     expected = <<~EXPECTED.rstrip
 
     EXPECTED
@@ -198,10 +188,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_one_match_file_flag_takes_precedence_over_line_flag
-    
-    pattern = "ten"
-    flags = ["-n", "-l"]
-    files = ["iliad.txt"]
+    pattern = 'ten'
+    flags = ['-n', '-l']
+    files = ['iliad.txt']
     expected = <<~EXPECTED.rstrip
       iliad.txt
     EXPECTED
@@ -210,10 +199,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_one_file_several_matches_inverted_and_match_entire_lines_flags
-    
-    pattern = "Illustrious into Ades premature,"
-    flags = ["-x", "-v"]
-    files = ["iliad.txt"]
+    pattern = 'Illustrious into Ades premature,'
+    flags = ['-x', '-v']
+    files = ['iliad.txt']
     expected = <<~EXPECTED.rstrip
       Achilles sing, O Goddess! Peleus' son;
       His wrath pernicious, who ten thousand woes
@@ -229,10 +217,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_one_match_no_flags
-    
-    pattern = "Agamemnon"
+    pattern = 'Agamemnon'
     flags = []
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       iliad.txt:Of Atreus, Agamemnon, King of men.
     EXPECTED
@@ -241,10 +228,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_several_matches_no_flags
-    
-    pattern = "may"
+    pattern = 'may'
     flags = []
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       midsummer-night.txt:Nor how it may concern my modesty,
       midsummer-night.txt:But I beseech your grace that I may know
@@ -255,10 +241,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_several_matches_print_line_numbers_flag
-    
-    pattern = "that"
-    flags = ["-n"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'that'
+    flags = ['-n']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       midsummer-night.txt:5:But I beseech your grace that I may know
       midsummer-night.txt:6:The worst that may befall me in this case,
@@ -270,10 +255,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_one_match_print_file_names_flag
-    
-    pattern = "who"
-    flags = ["-l"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'who'
+    flags = ['-l']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       iliad.txt
       paradise-lost.txt
@@ -283,10 +267,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_several_matches_case_insensitive_flag
-    
-    pattern = "TO"
-    flags = ["-i"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'TO'
+    flags = ['-i']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       iliad.txt:Caused to Achaia's host, sent many a soul
       iliad.txt:Illustrious into Ades premature,
@@ -304,10 +287,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_several_matches_inverted_flag
-    
-    pattern = "a"
-    flags = ["-v"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'a'
+    flags = ['-v']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       iliad.txt:Achilles sing, O Goddess! Peleus' son;
       iliad.txt:The noble Chief Achilles from the son
@@ -318,10 +300,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_one_match_match_entire_lines_flag
-    
-    pattern = "But I beseech your grace that I may know"
-    flags = ["-x"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'But I beseech your grace that I may know'
+    flags = ['-x']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       midsummer-night.txt:But I beseech your grace that I may know
     EXPECTED
@@ -330,10 +311,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_one_match_multiple_flags
-    
-    pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN"
-    flags = ["-n", "-i", "-x"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'WITH LOSS OF EDEN, TILL ONE GREATER MAN'
+    flags = ['-n', '-i', '-x']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       paradise-lost.txt:4:With loss of Eden, till one greater Man
     EXPECTED
@@ -342,10 +322,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_no_matches_various_flags
-    
-    pattern = "Frodo"
-    flags = ["-n", "-l", "-x", "-i"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'Frodo'
+    flags = ['-n', '-l', '-x', '-i']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
 
     EXPECTED
@@ -354,10 +333,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_several_matches_file_flag_takes_precedence_over_line_number_flag
-    
-    pattern = "who"
-    flags = ["-n", "-l"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'who'
+    flags = ['-n', '-l']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       iliad.txt
       paradise-lost.txt
@@ -367,10 +345,9 @@ class GrepTest < Minitest::Test
   end
 
   def test_multiple_files_several_matches_inverted_and_match_entire_lines_flags
-    
-    pattern = "Illustrious into Ades premature,"
-    flags = ["-x", "-v"]
-    files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
+    pattern = 'Illustrious into Ades premature,'
+    flags = ['-x', '-v']
+    files = ['iliad.txt', 'midsummer-night.txt', 'paradise-lost.txt']
     expected = <<~EXPECTED.rstrip
       iliad.txt:Achilles sing, O Goddess! Peleus' son;
       iliad.txt:His wrath pernicious, who ten thousand woes
