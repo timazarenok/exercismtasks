@@ -8,18 +8,21 @@ To get started with TDD, see the `README.md` file in your
 
 
 class Queens
-    def initialize(args)
-        @white = args[:white]
-        @black = args[:black]
-        on_desk
+    def initialize(white: nil, black: nil)
+        @white = white
+        @black = black
+        raise ArgumentError if on_desk?(@white)
     end 
-
-    def on_desk
-        raise ArgumentError.new if (@white[0] > 8 && @white[0] <= 0) && (@white[1] > 8 && @white[1] <= 0)
-    end
 
     def attack?
         row? || column? || diog?
+    end
+
+    private 
+
+    def on_desk?(queen)
+        return true if queen.nil?
+        (queen[0] > 7 || queen[0] <= 0) || (queen[1] > 7 || queen[1] <= 0)
     end
 
     def row?
@@ -31,8 +34,8 @@ class Queens
     end
 
     def diog?
-        @white[0] == @white[1] && @black[0] == @black[1]
+        (@white[0] - @black[0]).abs == (@black[1] - @white[1]).abs
     end
 end
 
-p queens = Queens.new(white: [7,5])
+p Queens.new(white: [8,4])
